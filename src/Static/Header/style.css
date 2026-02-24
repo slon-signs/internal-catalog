@@ -1,0 +1,114 @@
+.header{
+    display: flex;
+    background-color: #FFF;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    padding-block: 40px;
+    /*padding-inline: 32px;*/
+    font-size: calc(2px + 1.5vmin);
+    color: rbg(0,0,0);
+    height:40px;
+    width: 100%;
+}
+
+.headerLeftSide {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    /*font-size: calc(2px + 1.2vmin);*/
+    background-color: #FFF;
+    /*margin-right: 30px;*/
+    margin-left: 1px;
+}
+
+.headerRightSide {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(1px + 1.2vmin);
+    color: rgb(0, 0, 0);
+    background-color:#FFF;
+    margin-right: 5px;
+    margin-left: 30px;
+    width: 250px;
+    max-width: 250px;
+}
+
+.headerRightSide p {
+    font-size: 14px;
+}
+
+/*to show user email when screen is bigger than 768px*/
+/*@media screen and (min-width: 768px){
+    .headerRightSide p {
+        display: block;
+    }
+}*/
+
+@media screen and (max-width: 797px){
+    .headerRightSide{
+        width: 50px;
+    }
+    
+    .headerRightSide p {
+        display: none;
+    }
+    
+    .headerLeftSide img{
+        display: none;
+    }
+
+    .marginRight{
+        margin-right: 10px;
+    }
+
+    .marginleft{
+        margin-left: 10px;
+    }
+
+    .headerIcons {
+        height: 17px;
+        width: 17px;
+    }
+}
+
+.headerLogoCircle {
+    height: 70px;
+    width: 70px;
+    margin-left: 20px;
+}
+
+.headerIcons {
+    height: 25px;
+    width: 25px;
+    color:#7e1c1c;
+    cursor: pointer;
+}
+
+.marginRight{
+    margin-right: 20px;
+}
+  
+.marginleft{
+    margin-left: 15px;
+}
+
+.buttonForIcons{
+    color: rgb(126, 28, 28);
+    border: none;
+    outline: none;
+    margin-left: calc(-10px + 1vw);
+    background-color:#FFF;
+}
+
+h6 {
+    font-size: calc(2px + 0.9vmin);
+    color: #aa2222;
+    margin: 0px;
+    padding-right: 0px;
+    font-weight: 400;
+}
+

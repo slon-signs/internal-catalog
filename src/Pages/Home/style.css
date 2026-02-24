@@ -1,0 +1,473 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #ffffff;
+    color: #111;
+}
+
+.container {
+    padding: 50px 20px 80px;
+    text-align: center;
+}
+
+.logo {
+    width: 450px;
+    margin-bottom: 35px;
+}
+
+/* SEARCH */
+
+.searchContainer {
+    max-width: 650px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.searchContainer input {
+    width: 100%;
+    max-width: 600px;
+    padding: 18px 55px;
+    border-radius: 50px;
+    border: 1px solid #e5e5e5;
+    font-size: 17px;
+    transition: 0.3s;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.searchContainer input:focus {
+    border-color: #f196a5;
+    box-shadow: 0 10px 30px rgba(200, 16, 47, 0.099);
+    outline: none;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.clearBtn {
+    position: absolute;
+    right: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* SEARCH TIPS */
+
+.tipsContainer {
+    margin-bottom: 40px;
+}
+
+.tipsTitle {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.suggestions button {
+    margin: 6px;
+    padding: 4px 18px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    /* background: #f7f7f7; */
+    background: #d0d0d0;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.suggestions button:hover {
+    background: #df556c;
+    color: white;
+    border-color: #df556c;
+}
+
+/* CATEGORY CARDS */
+
+.categoryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.categoryCard {
+    background: #ffffff;
+    padding: 40px 20px;
+    border-radius: 24px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.05);
+}
+
+.categoryCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+}
+
+
+.categoryCard h3 {
+    margin-top: 18px;
+    font-weight: 600;
+}
+
+/* MODAL */
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    width: 95%;
+    max-width: 1200px;
+    max-height: 85vh;
+    background: white;
+    border-radius: 28px;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.modalHeader {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.productGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.productCard {
+    background: #fafafa;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.productCard:hover {
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.08);
+}
+
+.productCard.highlight {
+    border: 2px solid #c8102e;
+}
+
+.imageWrapper {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 18px 18px 0 0;
+}
+
+/* .imageWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.imageWrapper {
+    width: 100%;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+} */
+
+.imageWrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.cardContent {
+    padding: 20px;
+    text-align: left;
+}
+
+.code {
+    font-size: 15px;
+    color: #c8102e;
+    font-weight: 600;
+}
+
+.notes {
+    font-size: 13px;
+    color: #555;
+}
+
+.driveLink {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #c8102e;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.driveLink:hover {
+    text-decoration: underline;
+}
+
+.fadeIn {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeUp 0.5s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* LOADING */
+
+.loadingWrapper {
+    margin-top: 60px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #eee;
+    border-top: 4px solid #df556c;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* PRODUCT */
+
+.specToggle {
+    margin-top: 10px;
+    background: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.specContent {
+    margin-top: 10px;
+    font-size: 14px;
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 12px;
+    animation: fadeUp 0.3s ease;
+}
+
+.miniProductList {
+    margin-top: 30px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-left: 29%;
+}
+
+
+.miniProductItem {
+    font-size: 14px;
+    color: #555;
+    transition: 0.2s;
+    text-align: left;
+}
+
+.miniProductItem:hover {
+    color: #df556c;
+}
+
+.miniCode {
+    font-weight: 600;
+    color: #c8102e;
+}
+
+.miniName {
+    font-weight: 400;
+}
+
+.machineryContainer {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    border-radius: 28px;
+    transition: all 0.3s ease;
+    padding-bottom: 30px;
+    /* margin-bottom:-30px; */
+}
+
+.machineryContainer.open {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    margin-bottom:-30px;
+}
+
+.machineryButton {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #eee;
+    padding: 42px 35px;
+    border-radius: 28px;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.05);
+}
+
+.machineryContainer.open .machineryButton {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
+    box-shadow: none;
+    margin-bottom:-30px;
+}
+
+.machineryArrow {
+    size: 28px;
+    transition: transform 0.3s ease;
+}
+
+.machineryArrow.rotate {
+    transform: rotate(180deg);
+}
+
+.modalHeader {
+    position: static;
+    top: 0;
+    background: rgba(255, 255, 255, 0.658);
+    padding-bottom: 25px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.modalTitleWrapper {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.modalTitleWrapper h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+.categorySpecsBtn {
+    padding: 6px 20px;
+    margin-top: 6px;
+    border-radius: 20px;
+    border-width: 0.5px;
+    border-color: #c8102f73;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #c8101081;
+    background: linear-gradient(270deg,
+            #fff,
+            #fa616117,
+            #fff,
+            #fa616117,
+            #fff);
+    background-size: 500% 500%;
+    animation: gradientShift 10s ease infinite;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.categorySpecsBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(200, 16, 47, 0.253);
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .productGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .logo {
+        width: 250px;
+    }
+
+    .container {
+        padding: 15px 15px 15px;
+        text-align: center;
+    }
+
+    .searchContainer {
+        max-width: 68%;
+        margin: 0px;
+        position: relative;
+    }
+
+    .machineryContainer {
+        padding: 10px;
+    }
+
+    .modalTitleWrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .categorySpecsBtn {
+        width: 100%;
+        text-align: center;
+    }
+
+}

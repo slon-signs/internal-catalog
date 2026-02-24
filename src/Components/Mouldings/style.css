@@ -1,0 +1,392 @@
+.tableStyle{
+    table-layout: fixed;
+    width: 100%;
+    background-color: #FFF;
+}
+.HVCenter12{
+    align-items: center;
+    width: 100%;
+    background-color: #FFF;
+}
+
+.HVCenter12Regular{
+    align-items: center;
+    width: 100%;
+    color: rgb(46, 93, 223);
+}
+.HVCenter12Intro{
+    align-items: center;
+    width: 100%;
+    color: rgb(47, 184, 42);
+    /* color: rgb(201, 122, 20); */
+}
+.HVCenter12Special{
+    align-items: center;
+    width: 100%;
+    color: rgb(201, 122, 20);
+}
+
+.iconOpenDetails{
+    width: 35px;
+    height: 35px;
+    color: #d8670b;
+    cursor: pointer
+}
+
+.centerlizedTitleField{
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-top: 5px;
+    color: #555;
+}
+.centerlizedField{
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.detailsModal {
+    margin-top: 3px;
+    margin-left: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items:center;
+    flex-direction: center;
+    width: 100%;
+    box-shadow: 0.5px 0.5px 1px rgba(32, 33, 36, 0.28);
+  }
+
+.detailsItemsModal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items:center;
+    justify-content:space-around;
+    margin-right: 10px;
+    margin-left: 10px;
+    flex-direction: row;
+    width: 100%;
+  }
+  
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items:center;
+    justify-content:center;
+    flex-direction: row;
+    margin-top: 180px;
+    width: 98%;
+  }
+  
+  .product-item {
+    box-shadow: 1px 0.8px 1px rgba(32, 33, 36, 0.28);
+    padding: 20px;
+    background-color: #FFF;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+  }
+  
+
+
+.itemContainer{
+    margin-top: 8px;
+    /*background-color:#FF0F;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1px;
+    width: 100%;
+}
+
+.ulItemId{
+    display: flex;
+    /*background-color:#F0FF;*/
+    border-radius: 15px;
+    list-style:none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 20px;
+    width: 90%;
+    /* box-shadow: 0.5px 0.5px 3px rgba(32, 33, 36, 0.28); */
+    /* width: calc(1px + 180vmin); */
+    margin-inline: 0px;
+}
+
+/*.ulItemId li + li + li{
+    color: aqua;
+}*/
+
+.titleContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    /*background-color:aqua;*/
+    align-items: center;
+}
+
+.copyIcon{
+    width: 25px;
+    height: 25px;
+    padding: 2px;
+    color: #921c1c;
+    cursor: pointer;
+}
+
+.itemTitleContainer{
+    display: flex;
+    width:100%;
+    height: 35px;
+    justify-content: space-between;
+    /*background-color:aqua;*/
+    margin-left: 15px;
+}
+
+.itemTitleLeftContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /*background-color:blue;*/
+    width: 100%;
+    height: 35px;
+}
+
+.itemTitleRightContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: center;
+    /*background-color:antiquewhite;*/
+    width: 10%;
+    height: 35px;
+}
+
+.liTitle{
+    padding-top: 5px;
+    display: flex;
+    width: 98%;
+    height: 35px;
+    margin-block: 10px;
+    align-items: center;
+    justify-content: center;
+    /*background-color:chartreuse;*/
+    font-size: calc(1.63px + 1.63vmin);
+}
+
+.liImg{
+    /*display: flex;*/
+    display: flex;
+    position: relative;
+    /*background-color:cadetblue;*/
+    /* Line below adjust all width the same if 48 */
+    width:calc(1.5px + 32vmin);
+    align-items: center;
+    justify-content: center;
+}
+
+.imgItem{
+    display: block;
+    cursor: pointer; 
+    /*object-fit: contain;  get your original size, or we can use cover*/
+    object-fit:fill; 
+    border-radius: 15px;
+    margin-top: 5px;
+    width:calc(40px + 42vmin);
+    /*Below is where we change the heigh of the images*/
+    height: calc(25px + 35vmin);
+}
+
+.descriptionDiv{
+    display: flex;
+    flex-direction: column;
+    /*background-color:coral;*/
+    display: flex;
+    margin-top: 1px;
+    padding: 5px;
+    width: calc(9px + 45vmin);
+    height: calc(10.5px + 7vmin);
+    margin-block: 3px;
+}
+
+.liDescription{
+    display: flex;
+    flex-direction: row;
+    /*background-color:yellow;*/
+    font-size: calc(1.32px + 1.32vmin);
+    width: calc(4px + 45vmin);
+    padding: 3.5px;
+}
+
+.btnDetails{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; 
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: #303030;
+    width: calc(5.5px + 18vmin);
+    color: #303030;
+}
+
+.detailsDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: flex-end;
+    width: 100%;
+    margin-right: -40px;
+    /*background-color:yellowgreen;*/
+}
+
+#plusCircleIcon{
+    width:14px;
+    height: 14px;
+    margin-right: 3px;
+}
+
+#editIcon{
+    padding-top: 5px;
+    width:25px;
+    height: 25px;
+    color: #921c1c;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+
+.NoImgItem{
+    display: flex;
+    cursor: pointer; 
+    /*object-fit: contain;  get your original size, or we can use cover*/
+    object-fit:fill; 
+    border-radius: 15px;
+    margin-top: 5px;
+    width:calc(40px + 42vmin);
+    /*Below is where we change the heigh of the images*/
+    height: calc(25px + 35vmin);
+    background-color: #d1d1d1;
+    opacity: 0.5;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnSelectProduct{
+    position: absolute; 
+    width: 35px;
+    height: 50px;
+    opacity: 0.5;
+    cursor: pointer;
+    background-color:#DCDCDC;
+    color: #121212;
+    border-radius: 12px;
+    top:40%;
+}
+
+.quantityIndicatorContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.quantityIndicator {
+    width: 7px;
+    height: 7px;
+    background-color: #2C3E50;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.quantityIndicatorEmpty {
+    width: 7px;
+    height: 7px;
+    background-color: #FFF;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.currentImage {
+    background-color: red; /* Set the color to red for the current image */
+}
+
+.imgMaterialContainer {
+    cursor: pointer;
+    margin-left: 1px;
+  }
+
+.imgDetailsMaterialContainer {
+    margin-left: 15px;
+    max-width: 280px;
+    max-height: 350px;
+  }
+
+  .box-ft-text{
+    margin-top: -15px;
+    color:#444;
+    font-size:8px
+}
+
+@media screen and (max-width: 870px){
+    .liImg{
+        width:calc(1px + 28vmin);
+    }
+    .centerlizedTitleField{
+        align-items: center;
+        text-align: center;
+        font-size: 9px;
+        width: 85%;
+        margin-top: 5px;
+        color: #555;
+    }
+    .centerlizedField{
+        align-items: center;
+        text-align: center;
+        font-size: 8px;
+        width: 80%;
+        margin-top: 5px;
+    }
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items:center;
+        justify-content:center;
+        flex-direction: row;
+        margin-top: 210px;
+        width: 85%;
+    }
+    .detailsModal {
+        margin-left: 25px;
+        border-width: 0px;
+        flex-direction: column;
+        width: 100%;
+    }
+    .detailsItemsModal {
+        justify-content:center;
+        width: 95%;
+    }
+    .imgDetailsMaterialContainer {
+        margin-left: 0px;
+        max-width: 200px;
+        max-height: 300px;
+    }
+    .textDetailsStyle{
+        font-size:8.5px;
+    }
+    .HVCenter12{
+        font-size:90%;
+    } 
+    .box-ft-text{
+        margin-top: -7px;
+        color:#444;
+        font-size:6px
+    }
+}

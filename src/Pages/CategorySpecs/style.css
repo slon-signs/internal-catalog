@@ -1,0 +1,49 @@
+.categorySpecsOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.categorySpecsModal {
+    width: 90%;
+    max-width: 900px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 24px;
+    padding: 40px;
+    animation: fadeUp 0.35s ease;
+}
+
+.categorySpecsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.categorySpecsIntro {
+    margin: 20px 0 30px;
+    line-height: 1.6;
+}
+
+.categorySpecsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.categorySpecsTable td {
+    border: 1px solid #ddd;
+    padding: 14px;
+    vertical-align: top;
+}
+
+.labelCell {
+    width: 35%;
+    background: #f6e9e9;
+    font-weight: 600;
+}

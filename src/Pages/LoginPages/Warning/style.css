@@ -1,0 +1,35 @@
+
+.warningContainer{
+    display: flex;
+    margin-top: 10%;
+    flex-direction: column; 
+    width: 90%;
+    max-width: 500px;
+    height: 300px;
+    justify-content: center; 
+    align-items: center;
+    background-color: #FFF;
+    border: 1px solid #DCDCDC;
+}
+
+.btnConfirm{
+    height: 35px;
+    width: 100px;
+    background: #121212;
+    border-radius: 5px;
+    color: #FFF;
+    border: 2px solid #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+.btnConfirm:hover{
+    background-color: #DCDCDC;
+    color: #121212;
+}

@@ -1,0 +1,119 @@
+.machineryButtonWrapper {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.machineryToggle {
+    margin: 60px auto 0;
+    width: 90%;
+    max-width: 1105px;
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.11);
+    padding: 30px 40px;
+}
+
+.machineryToggle:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.machineryToggleContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.machineryArrow {
+    transition: transform 0.3s ease;
+}
+
+.machineryArrow.rotate {
+    transform: rotate(180deg);
+}
+
+.machineryWrapper {
+    max-width: 1200px;
+    margin: 20px auto 0;
+    animation: fadeSlideDown 0.4s ease forwards;
+}
+
+@keyframes fadeSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.machineryWrapper {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.machineryWrapper.open {
+    max-height: 2000px;
+    opacity: 1;
+    margin-top: 35px;
+}
+
+.machineryContent {
+    max-width: 1100px;
+    margin: auto;
+    text-align: left;
+    animation: fadeUp 0.5s ease;
+}
+
+.machineryTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.machineryTable th {
+    background: #fce6e6;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.machineryTable td {
+    padding: 12px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+    .machineryButtonWrapper {
+        max-width: 300px;
+    }
+
+    .machineryToggle {
+        width: 70%;
+        max-width: 300px;
+    }
+
+    .machineryTable {
+        width: 80%;
+    }
+
+    .machineryTable th {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .machineryTable td {
+        padding: 10px;
+        font-size: 11px;
+    }
+}
