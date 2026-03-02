@@ -25,7 +25,7 @@ import "./style.css";
 import TopImage from "../../img/slon-large.png";
 
 const CSV_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRAGTOXTbity86z3pUrl2_qS2XOH2pp4EnZ-o5NoYa0-WkWRrl2hIPYo8KFb865YA/pub?gid=471558653&single=true&output=csv";
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRi6d5P12AvwsVh5EjWHZbX5Hyu5tXco2aECP8SXoCEiTMHaV3Lc_gb9XtXYFwJekd3nGdbKUrFVbNg/pub?output=csv";
 
 function Home() {
 
