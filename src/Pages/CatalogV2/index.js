@@ -509,7 +509,7 @@ function CatalogV2({
                                                     {s.name || "—"} | {s.productCode || ""}
                                                 </div>
 
-                                                <div className="subDesc">
+                                                <div className="subDesc" style={{marginLeft:"0px"}}>
                                                     {s.description || ""}
                                                 </div>
 
