@@ -1,0 +1,854 @@
+/* =========================
+   CATALOG V2 – SPECIAL SECTIONS
+========================= */
+
+.specialSections {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 20px 0 25px 0;
+}
+
+@media (min-width: 900px) {
+    .specialSections {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.specialBlock {
+    background: #fff;
+    border-radius: 16px;
+    padding: 14px 14px 12px 14px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.specialHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.specialHeader h3 {
+    font-size: 15px;
+    margin: 0;
+    margin-top: -10px;
+    color: #111;
+}
+
+.specialBadge {
+    background: #111;
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.specialEmpty {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.notCatList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 180px;
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.notCatItem {
+    background: #f2f2f7;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    color: #111;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.inactiveList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 220px;
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.inactiveItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff5f5;
+    border: 1px solid rgba(255, 0, 0, 0.10);
+    border-radius: 12px;
+    padding: 10px 12px;
+}
+
+.inactiveTitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+}
+
+.inactiveCode {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+}
+
+.inactiveRight {
+    font-size: 12px;
+    font-weight: 700;
+    color: #b00020;
+    background: #ffe7ea;
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+
+
+/* =========================
+   CATALOG V2 – CATEGORY CARDS
+========================= */
+
+.catV2Title {
+    margin: 0;
+}
+
+.catV2Code {
+    margin: 6px 0 0 0;
+    font-size: 12px;
+    color: #666;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.catV2Meta {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #555;
+}
+
+.catV2Count {
+    background: #f2f2f7;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 6px 10px;
+    border-radius: 999px;
+    display: inline-block;
+}
+
+
+/* =========================
+   CATALOG V2 – SUB PRODUCTS (MAIN)
+========================= */
+
+.subProductsWrap {
+    margin-top: 10px;
+}
+
+.subEmpty {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.subGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+@media(min-width: 850px) {
+    .subGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.subCard {
+    display: flex;
+    gap: 10px;
+    background: #f8f8fb;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 14px;
+    padding: 10px;
+}
+
+.subImg {
+    width: 68px;
+    height: 68px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.subImgPh {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: #e9e9ee;
+}
+
+.subInfo {
+    flex: 1;
+}
+
+.subName {
+    font-size: 13px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.subDesc {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.35;
+    max-height: 52px;
+    overflow: hidden;
+}
+
+.subDrive {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #111;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    padding: 7px 10px;
+    border-radius: 999px;
+}
+
+
+
+
+
+/* =========================
+   CATALOG V2 – SPECIAL SECTIONS
+========================= */
+
+.specialSections {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 20px auto 25px auto;
+    max-width: 1200px;
+}
+
+@media (min-width: 900px) {
+    .specialSections {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.specialBlock {
+    background: #fff;
+    border-radius: 16px;
+    padding: 14px 14px 12px 14px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.specialHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.specialHeader h3 {
+    font-size: 15px;
+    margin: 0;
+    margin-top: -10px;
+    color: #111;
+}
+
+.specialBadge {
+    background: #111;
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.specialEmpty {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.notCatList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 180px;
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.notCatItem {
+    background: #f2f2f7;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    color: #111;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.inactiveList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 220px;
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.inactiveItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff5f5;
+    border: 1px solid rgba(255, 0, 0, 0.10);
+    border-radius: 12px;
+    padding: 10px 12px;
+}
+
+.inactiveTitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+}
+
+.inactiveCode {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+}
+
+.inactiveRight {
+    font-size: 12px;
+    font-weight: 700;
+    color: #b00020;
+    background: #ffe7ea;
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+
+/* V2 category meta */
+.catV2Code {
+    margin: 6px 0 0 0;
+    font-size: 12px;
+    color: #666;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+
+
+
+
+
+/* =========================
+   V2 PRODUCT CARD ENHANCEMENTS
+========================= */
+
+.v2Description {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.4;
+    margin-top: 8px;
+}
+
+.v2CountRow {
+    margin-top: 10px;
+}
+
+.v2CountBadge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    background: #111;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 999px;
+}
+
+/* MINI CAROUSEL */
+
+.miniCarousel {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.miniThumb {
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: 0.6;
+    border: 2px solid transparent;
+    transition: all 0.25s ease;
+}
+
+.miniThumb:hover {
+    opacity: 0.9;
+}
+
+.miniThumb.active {
+    opacity: 1;
+    border-color: #c8102e;
+}
+
+
+
+
+
+
+/* ---------- Special sections collapse ---------- */
+.specialHeaderBtn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    cursor: pointer;
+}
+
+.specialHeaderLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.specialArrow {
+    color: #111;
+    transition: transform .25s ease;
+}
+
+.specialArrow.rotate {
+    transform: rotate(180deg);
+}
+
+.specialBody {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: max-height .35s ease, opacity .25s ease, transform .25s ease;
+}
+
+.specialBody.open {
+    max-height: 420px;
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 12px;
+}
+
+/* ---------- Not Categorized cards ---------- */
+.notCatCards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+@media(min-width: 900px) {
+    .notCatCards {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.notCatCard {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    background: #f8f8fb;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 14px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.notCatCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.notCatImg {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notCatImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.notCatPh {
+    width: 28px;
+    height: 28px;
+    border-radius: 10px;
+    background: #e9e9ee;
+}
+
+.notCatCode {
+    font-size: 12px;
+    font-weight: 800;
+    color: #111;
+}
+
+.notCatName {
+    font-size: 12px;
+    color: #555;
+    margin-top: 4px;
+    line-height: 1.25;
+    max-height: 30px;
+    overflow: hidden;
+}
+
+/* ---------- Category card upgrade ---------- */
+.catTop {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: -6px;
+}
+
+.catIcon {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    background: #f2f2f7;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.catPreview {
+    margin-top: 16px;
+    width: 100%;
+    height: 120px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.catPreview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.catPreviewPh {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: #e9e9ee;
+}
+
+
+
+
+
+/* Collapsible special body */
+.specialBody {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
+    opacity: 0;
+    transform: translateY(-6px);
+}
+
+.specialBody.open {
+    max-height: 420px;
+    /* keep your requirement */
+    overflow: auto;
+    /* ✅ adds scroll like inactive list */
+    padding-top: 12px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.specialHeaderBtn {
+    width: 100%;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 2px 8px 2px;
+    cursor: pointer;
+}
+
+.specialHeaderLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.specialArrow {
+    transition: transform .25s ease;
+    opacity: .7;
+}
+
+.specialArrow.rotate {
+    transform: rotate(180deg);
+}
+
+
+
+.categoryCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+
+    background: #ffffff;
+    padding: 40px 20px;
+    border-radius: 24px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.05);
+}
+
+.catV2Title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: calc(18px * 1.25 * 3);
+}
+
+
+
+.modalSubTitle {
+    margin: 8px 0 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modalCatPill {
+    font-size: 12px;
+    font-weight: 700;
+    color: #666;
+    background: #f2f2f7;
+    border: 1px solid rgba(0, 0, 0, .08);
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+
+.modalCatCode {
+    font-size: 13px;
+    font-weight: 900;
+    color: #c8102e;
+    /* ✅ different color */
+    letter-spacing: .6px;
+}
+
+
+
+.v2ActionRow {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.v2DriveBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(0, 0, 0, .12);
+    background: #fff;
+    padding: 10px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+.v2DriveBtn:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .08);
+    transform: translateY(-1px);
+}
+
+
+
+.notCatDetailBody {
+    padding: 8px 0 0;
+}
+
+.notCatDetailTop {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 18px;
+    align-items: start;
+}
+
+@media(max-width: 900px) {
+    .notCatDetailTop {
+        grid-template-columns: 1fr;
+    }
+}
+
+.notCatDetailImg {
+    width: 100%;
+    height: 220px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, .08);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notCatDetailImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.notCatDetailPh {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: #e9e9ee;
+}
+
+.notCatDetailDesc {
+    margin: 0 0 14px 0;
+    color: #444;
+    line-height: 1.45;
+}
+
+.notCatDetailActions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.v2PrimaryBtn {
+    border: none;
+    background: #111;
+    color: #fff;
+    padding: 11px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 12px;
+}
+
+.notCatDetailGrid {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+@media(max-width:900px) {
+    .notCatDetailGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.notCatDetailBox {
+    background: #f8f8fb;
+    border: 1px solid rgba(0, 0, 0, .06);
+    border-radius: 16px;
+    padding: 12px;
+}
+
+.notCatDetailLabel {
+    font-size: 12px;
+    font-weight: 900;
+    color: #111;
+    margin-bottom: 6px;
+}
+
+.notCatDetailText {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.35;
+}
+
+/* Small modal */
+.miniModal {
+    width: 92%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .18);
+}
+
+.miniModalTitle {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.miniModalMsg {
+    color: #444;
+    line-height: 1.35;
+    margin-bottom: 14px;
+}
+
+.miniModalBtn {
+    width: 100%;
+    border: none;
+    background: #111;
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 900;
+}

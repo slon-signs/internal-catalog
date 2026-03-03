@@ -98,7 +98,7 @@ body {
     margin: auto;
 }
 
-.categoryCard {
+.categoryCard-legacy {
     background: #ffffff;
     padding: 40px 20px;
     border-radius: 24px;
@@ -108,13 +108,13 @@ body {
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.05);
 }
 
-.categoryCard:hover {
+.categoryCard-legacy:hover {
     transform: translateY(-8px);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
 }
 
 
-.categoryCard h3 {
+.categoryCard-legacy h3 {
     margin-top: 18px;
     font-weight: 600;
 }

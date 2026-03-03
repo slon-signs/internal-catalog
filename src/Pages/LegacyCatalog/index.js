@@ -27,7 +27,7 @@ import TopImage from "../../img/slon-large.png";
 const CSV_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vRi6d5P12AvwsVh5EjWHZbX5Hyu5tXco2aECP8SXoCEiTMHaV3Lc_gb9XtXYFwJekd3nGdbKUrFVbNg/pub?output=csv";
 
-function Home() {
+function LegacyCatalog() {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -182,7 +182,7 @@ function Home() {
             return (
               <div
                 key={cat}
-                className="categoryCard fadeIn"
+                className="categoryCard-legacy fadeIn"
                 style={{ animationDelay: `${index * 0.05}s` }}
                 onClick={() => setSelectedCategory(cat)}
               >
@@ -374,4 +374,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default LegacyCatalog;

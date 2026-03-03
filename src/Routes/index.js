@@ -1,9 +1,9 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 
-import Home from '../Pages/Home';
+import CatalogController from '../Pages/CatalogController';
 import Error from '../Pages/Error';
 
-function RoutesApp(){
+function RoutesApp() {
 
     const navigate = useNavigate();
 
@@ -12,17 +12,17 @@ function RoutesApp(){
         navigate(`/products?search=${searchQuery}`);
     };
 
-    return(
-        
-            <Routes>
+    return (
 
-                <Route path="/" element={<Home/> }/>
-                {/* <Route path="/products" element={<Private> <Products navigateToProductsWithSearch={navigateToProductsWithSearch} /> </Private>}/> */}
-                {/* <Route path="/profile" element={<Profile/>}/> */}
+        <Routes>
 
-                <Route path="*" element={ <Error/> }/>
-            </Routes>
-        
+            <Route path="/" element={<CatalogController />} />
+            {/* <Route path="/products" element={<Private> <Products navigateToProductsWithSearch={navigateToProductsWithSearch} /> </Private>}/> */}
+            {/* <Route path="/profile" element={<Profile/>}/> */}
+
+            <Route path="*" element={<Error />} />
+        </Routes>
+
     );
 }
 
