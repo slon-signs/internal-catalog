@@ -214,7 +214,9 @@
     color: #555;
     line-height: 1.35;
     max-height: 52px;
-    overflow: hidden;
+    overflow-y: auto;
+    padding-right: 4px;
+    margin-left: -70px;
 }
 
 .subDrive {
@@ -721,6 +723,11 @@
 @media(max-width: 900px) {
     .notCatDetailTop {
         grid-template-columns: 1fr;
+    }
+
+    .subDesc {
+        font-size: 9px;
+        margin-left: -70px;
     }
 }
 

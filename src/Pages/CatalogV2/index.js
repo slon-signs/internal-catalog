@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Papa from "papaparse";
 import TopImage from "../../img/slon-large.png";
-import { Search, X, ChevronDown, Folder, Layers, ExternalLink, Zap } from "react-feather";
+import { Search, X, ChevronDown, Folder, Layers, ExternalLink } from "react-feather";
 import "./style.css";
 
 // ✅ IMPORTANT: Put your published CSV links here (3 tabs)
@@ -756,7 +756,7 @@ function CatalogV2({
                                                                                 {s.picture ? <img src={s.picture} alt="" /> : <div className="subImgPh" />}
                                                                             </div>
                                                                             <div className="subInfo">
-                                                                                <div className="subName">{s.name || "—"}</div>
+                                                                                <div className="subName">{s.name || "—"} | <h5>{s.productCode || ""}</h5></div>
                                                                                 <div className="subDesc">{s.description || ""}</div>
 
                                                                                 {/* {s.drive && s.drive !== "#N/A" && (
