@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Papa from "papaparse";
 import TopImage from "../../img/slon-large.png";
-import { Search, X, ChevronDown, Folder, Layers, ExternalLink } from "react-feather";
+import { Search, X, ChevronDown, Folder, Layers, ExternalLink, Zap } from "react-feather";
 import "./style.css";
 
 // ✅ IMPORTANT: Put your published CSV links here (3 tabs)
@@ -278,6 +278,24 @@ function CatalogV2({
         );
     }, [selectedCategory, activeProducts, search]);
 
+    const mainInCategory = useMemo(() => {
+        if (!selectedCategory?.code) return [];
+        const t = search.toLowerCase().trim();
+
+        return main
+            .filter((r) => clean(r.newCategory) === clean(selectedCategory.code))
+            .filter((r) => {
+                if (!t) return true;
+
+                return (
+                    (r.productCode || "").toLowerCase().includes(t) ||
+                    (r.name || "").toLowerCase().includes(t) ||
+                    (r.description || "").toLowerCase().includes(t) ||
+                    (r.newCode || "").toLowerCase().includes(t)
+                );
+            });
+    }, [main, selectedCategory, search]);
+
     const getCategoryPreview = (code) => {
         const first = activeProducts.find((p) => p.prefix === code && p.pictures?.length);
         return first?.pictures?.[0] || "";
@@ -468,6 +486,54 @@ function CatalogV2({
                                 }}
                             />
                         </div>
+
+                        {productsInCategory.length === 0 && (
+                            <div className="emptyCategoryBox">
+                                <div className="emptyCategoryTitle">
+                                    No NEW products found in this category ({selectedCategory.code}).
+                                </div>
+
+                                <div className="emptyCategorySub">
+                                    Showing Sub-products instead:
+                                </div>
+
+                                <div className="subGrid">
+                                    {mainInCategory.slice(0, 80).map((s, i) => (
+                                        <div key={`main-${s.productCode || i}`} className="subCard">
+                                            <div className="subImg">
+                                                {s.picture ? <img src={s.picture} alt="" /> : <div className="subImgPh" />}
+                                            </div>
+
+                                            <div className="subInfo">
+                                                <div className="subName">
+                                                    {s.name || "—"} | {s.productCode || ""}
+                                                </div>
+
+                                                <div className="subDesc">
+                                                    {s.description || ""}
+                                                </div>
+
+                                                <div className="subName" style={{fontSize:"12px", marginBlock:"20px", fontWeight:"500"}}>
+                                                    Product code: <br></br> <strong style={{fontSize:"16px"}}> {selectedCategory.code}-{s.newCode || ""} </strong>
+                                                </div>
+
+                                                {/* {s.drive && s.drive !== "#N/A" && (
+                                                    <a
+                                                        href={s.drive}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className="subDrive"
+                                                    >
+                                                        <Folder size={16} style={{ marginRight: "8px", marginBottom: "-2px" }} />
+                                                        Drive
+                                                    </a>
+                                                )} */}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
                         <div className="productGrid">
                             {productsInCategory.map((item, index) => {
@@ -693,7 +759,7 @@ function CatalogV2({
                                                                                 <div className="subName">{s.name || "—"}</div>
                                                                                 <div className="subDesc">{s.description || ""}</div>
 
-                                                                                {s.drive && s.drive !== "#N/A" && (
+                                                                                {/* {s.drive && s.drive !== "#N/A" && (
                                                                                     <a
                                                                                         href={s.drive}
                                                                                         target="_blank"
@@ -703,7 +769,7 @@ function CatalogV2({
                                                                                         <Folder size={16} style={{ marginRight: "8px", marginBottom: "-2px" }} />
                                                                                         Drive
                                                                                     </a>
-                                                                                )}
+                                                                                )} */}
                                                                             </div>
                                                                         </div>
                                                                     ))}
