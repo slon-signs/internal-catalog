@@ -43,8 +43,7 @@ body {
 .searchIcon {
     position: absolute;
     left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 16px;
     color: #999;
 }
 

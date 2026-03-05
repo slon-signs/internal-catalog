@@ -93,6 +93,7 @@ function CatalogV2({
             .map((r) => ({
                 code: clean(r["abbreviation"] || r["abbr"] || r["code"]),
                 name: clean(r["name"]),
+                folder: clean(r["folder"]),
             }))
             .filter((x) => x.code && x.name);
     }, [categoriesRows]);
@@ -116,7 +117,12 @@ function CatalogV2({
                     : [];
                 const active = clean(r["active"] || r["status"]);
                 const approved = clean(r["approved"]);
-                const description = clean(r["description"] || r["desc"]);
+                const description = clean(
+                    r["description"] ||
+                    r["desc"] ||
+                    r["product description"] ||
+                    r["productdescription"]
+                );
 
                 // ✅ strong fallbacks
                 const rawPrefix = clean(r["prefix"]);
@@ -190,7 +196,7 @@ function CatalogV2({
         const fromSheet = categories.filter((c) => usedCategoryCodes.includes(c.code));
         const fromProductsMissing = usedCategoryCodes
             .filter((code) => !fromSheet.some((x) => x.code === code))
-            .map((code) => ({ code, name: code }));
+            .map((code) => ({ code, name: code, folder: "" }));
 
         return [...fromSheet, ...fromProductsMissing];
     }, [categories, usedCategoryCodes]);
@@ -325,7 +331,29 @@ function CatalogV2({
                         <X size={24} style={{ color: "#333", marginBottom: "-5px" }} />
                     </button>
                 )}
+                {/* SEARCH TIPS */}
+
+                {!loading && !search && (
+                    <div className="tipsContainer fadeIn">
+                        <p className="tipsTitle">Quick search examples:</p>
+
+                        <div className="suggestions">
+                            {[
+                                "FILL-FACE-STD",
+                                "CABI-PUSH-CST",
+                                "Letters",
+                                "Illuminated",
+                                "Service",
+                            ].map((tip) => (
+                                <button key={tip} onClick={() => setSearch(tip)}>
+                                    {tip}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
+
 
             {loading && (
                 <div className="loadingWrapper">
@@ -336,10 +364,64 @@ function CatalogV2({
 
             {!loading && (
                 <>
+
+                    {/* CATEGORY GRID */}
+                    <div className="categoryGrid-catV2">
+                        {filteredCategoryCards.map((cat, index) => (
+                            <div
+                                key={cat.code}
+                                className="categoryCard fadeIn"
+                                style={{ animationDelay: `${index * 0.05}s` }}
+                                onClick={() => setSelectedCategory(cat)}
+                            >
+                                <div className="catTop">
+                                    <div className="catIcon">
+                                        <Layers size={16} />
+                                    </div>
+                                    <p className="catV2Code">{cat.code}</p>
+
+                                </div>
+                                <div className="catText">
+                                    <h3 className="catV2Title">{cat.name}</h3>
+                                </div>
+
+                                <div className="catPreview">
+                                    {getCategoryPreview(cat.code) ? (
+                                        <img src={getCategoryPreview(cat.code)} alt="" />
+                                    ) : (
+                                        <div className="catPreviewPh" />
+                                    )}
+                                </div>
+
+                                <div className="catV2Meta">
+                                    <span className="catV2Count">
+                                        <strong>{activeProducts.filter((p) => p.prefix === cat.code).length}</strong> item(s)
+                                    </span>
+
+                                    {cat.folder && (
+                                        <button
+                                            className="catFolderBtn"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                window.open(cat.folder, "_blank", "noreferrer");
+                                            }}
+                                        >
+                                            <Folder size={16} />
+                                            Category Folder
+                                            {/* <ExternalLink size={14} style={{ marginBottom: "-2px" }} /> */}
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+
                     {/* SPECIAL SECTIONS */}
                     {(SHOW_NOT_CATEGORIZED || SHOW_INACTIVE_PRODUCTS) && (
                         <div className="specialSections fadeIn">
-                            {SHOW_NOT_CATEGORIZED && (
+
+                            {/* {SHOW_NOT_CATEGORIZED && (
                                 <div className="specialBlock">
                                     <button
                                         className={`specialHeaderBtn ${openNotCat ? "open" : ""}`}
@@ -379,7 +461,7 @@ function CatalogV2({
                                         )}
                                     </div>
                                 </div>
-                            )}
+                            )} */}
 
                             {SHOW_INACTIVE_PRODUCTS && (
                                 <div className="specialBlock">
@@ -416,44 +498,6 @@ function CatalogV2({
                             )}
                         </div>
                     )}
-
-                    {/* CATEGORY GRID */}
-                    <div className="categoryGrid">
-                        {filteredCategoryCards.map((cat, index) => (
-                            <div
-                                key={cat.code}
-                                className="categoryCard fadeIn"
-                                style={{ animationDelay: `${index * 0.05}s` }}
-                                onClick={() => setSelectedCategory(cat)}
-                            >
-                                <div className="catTop">
-                                    <div className="catIcon">
-                                        <Layers size={16} />
-                                    </div>
-
-                                    <div className="catText">
-                                        <h3 className="catV2Title">{cat.name}</h3>
-                                        <p className="catV2Code">{cat.code}</p>
-                                    </div>
-                                </div>
-
-                                <div className="catPreview">
-                                    {getCategoryPreview(cat.code) ? (
-                                        <img src={getCategoryPreview(cat.code)} alt="" />
-                                    ) : (
-                                        <div className="catPreviewPh" />
-                                    )}
-                                </div>
-
-                                <div className="catV2Meta">
-                                    <span className="catV2Count">
-                                        {activeProducts.filter((p) => p.prefix === cat.code).length} products
-                                    </span>
-                                </div>
-
-                            </div>
-                        ))}
-                    </div>
                 </>
             )}
 
@@ -509,12 +553,12 @@ function CatalogV2({
                                                     {s.name || "—"} | {s.productCode || ""}
                                                 </div>
 
-                                                <div className="subDesc" style={{marginLeft:"0px"}}>
+                                                <div className="subDesc" style={{ marginLeft: "0px" }}>
                                                     {s.description || ""}
                                                 </div>
 
-                                                <div className="subName" style={{fontSize:"12px", marginBlock:"20px", fontWeight:"500"}}>
-                                                    Product code: <br></br> <strong style={{fontSize:"16px"}}> {selectedCategory.code}-{s.newCode || ""} </strong>
+                                                <div className="subName" style={{ fontSize: "12px", marginBlock: "20px", fontWeight: "500" }}>
+                                                    Product code: <br></br> <strong style={{ fontSize: "16px" }}> {selectedCategory.code}-{s.newCode || ""} </strong>
                                                 </div>
 
                                                 {/* {s.drive && s.drive !== "#N/A" && (
@@ -560,25 +604,8 @@ function CatalogV2({
                                         </div>
 
                                         <div className="cardContent">
-                                            <h4>{item.productName || item.product}</h4>
-                                            <span className="code">{item.product}</span>
-                                            <div className="v2ActionRow">
-                                                <button
-                                                    type="button"
-                                                    className="v2DriveBtn"
-                                                    onClick={() => {
-                                                        if (item.driveFolder) {
-                                                            window.open(item.driveFolder, "_blank", "noreferrer");
-                                                        } else {
-                                                            setDriveModal({ open: true, message: "Drive folder not available" });
-                                                        }
-                                                    }}
-                                                >
-                                                    <Folder size={16} style={{ marginBottom: "-2px" }} />
-                                                    Drive Folder
-                                                    <ExternalLink size={14} style={{ marginBottom: "-2px" }} />
-                                                </button>
-                                            </div>
+                                            <h4 style={{marginBlock:"5px"}}>{item.productName || item.product}</h4>
+                                            <span className="code" style={{marginBottom:"15px"}}>{item.product}</span>
 
                                             {/* DESCRIPTION ABOVE COUNT */}
                                             {item.description && (
@@ -587,15 +614,35 @@ function CatalogV2({
                                                 </p>
                                             )}
 
-                                            {/* NUMBER OF SIGNS */}
-                                            <div className="v2CountRow">
-                                                <span className="v2CountBadge">
-                                                    {sub.length} signs
-                                                </span>
+                                            <div className="v2ActionRow">
+
+                                                {/* NUMBER OF SIGNS */}
+                                                <div className="v2CountRow">
+                                                    <span className="v2CountBadge">
+                                                        {sub.length} sign(s)
+                                                    </span>
+                                                </div>
+
+                                                {/* DRIVE FOLDER */}
+                                                <button
+                                                    type="button"
+                                                    className="catFolderBtn"
+                                                    onClick={() => {
+                                                        if (item.driveFolder) {
+                                                            window.open(item.driveFolder, "_blank", "noreferrer");
+                                                        } else {
+                                                            setDriveModal({ open: true, message: "Drive folder not available" });
+                                                        }
+                                                    }}
+                                                >
+                                                    <Folder size={17} style={{ marginBottom: "-1px" }} />
+                                                    Product Folder
+                                                    <ExternalLink size={13} style={{ marginBottom: "1px" }} />
+                                                </button>
                                             </div>
 
                                             {/* MINI CAROUSEL */}
-                                            {item.pictures?.length > 1 && (
+                                            {/* {item.pictures?.length > 1 && ( */}
                                                 <div className="miniCarousel">
                                                     {item.pictures.map((pic, idx) => (
                                                         <img
@@ -615,10 +662,10 @@ function CatalogV2({
                                                         />
                                                     ))}
                                                 </div>
-                                            )}
+                                            {/* )} */}
 
                                             {/* NOT CATEGORIZED DETAILS MODAL */}
-                                            {selectedNotCat && (
+                                            {/* {selectedNotCat && (
                                                 <div
                                                     className="modalOverlay"
                                                     onClick={() => setSelectedNotCat(null)}
@@ -717,7 +764,7 @@ function CatalogV2({
                                                         </div>
                                                     </div>
                                                 </div>
-                                            )}
+                                            )} */}
 
 
                                             {/* SUB-PRODUCTS (FROM MAIN) */}
@@ -756,7 +803,7 @@ function CatalogV2({
                                                                                 {s.picture ? <img src={s.picture} alt="" /> : <div className="subImgPh" />}
                                                                             </div>
                                                                             <div className="subInfo">
-                                                                                <div className="subName">{s.name || "—"} | <h5>{s.productCode || ""}</h5></div>
+                                                                                <div className="subName">{s.name || "—"} <h4 style={{color:"#c53b3b"}}>{s.productCode || ""}</h4></div>
                                                                                 <div className="subDesc">{s.description || ""}</div>
 
                                                                                 {/* {s.drive && s.drive !== "#N/A" && (
@@ -771,6 +818,7 @@ function CatalogV2({
                                                                                     </a>
                                                                                 )} */}
                                                                             </div>
+                                                                            
                                                                         </div>
                                                                     ))}
                                                                 </div>
