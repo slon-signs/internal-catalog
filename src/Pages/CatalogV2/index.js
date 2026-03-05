@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Papa from "papaparse";
 import TopImage from "../../img/slon-large.png";
-import { Search, X, ChevronDown, Folder, Layers, ExternalLink } from "react-feather";
+import { Search, X, ChevronDown, Folder, Layers, ExternalLink, Eye } from "react-feather";
 import "./style.css";
 
 // ✅ IMPORTANT: Put your published CSV links here (3 tabs)
@@ -247,6 +247,14 @@ function CatalogV2({
         });
     }, [displayedCategories, search, activeProducts, main]);
 
+    useEffect(() => {
+        if (!search) return;
+
+        if (filteredCategoryCards.length === 1 && !selectedCategory) {
+            setSelectedCategory(filteredCategoryCards[0]);
+        }
+    }, [filteredCategoryCards, search, selectedCategory]);
+
     // ✅ Auto-open when user types exact MAIN Product Code or NEW_PRODUCTS product code
     useEffect(() => {
         const t = search.toLowerCase().trim();
@@ -303,6 +311,25 @@ function CatalogV2({
     }, [main, selectedCategory, search]);
 
     const getCategoryPreview = (code) => {
+        const t = search.toLowerCase().trim();
+
+        // If searching, try to find matching product first
+        if (t) {
+            const match = activeProducts.find(
+                (p) =>
+                    p.prefix === code &&
+                    (
+                        (p.product || "").toLowerCase().includes(t) ||
+                        (p.productName || "").toLowerCase().includes(t) ||
+                        (p.description || "").toLowerCase().includes(t)
+                    ) &&
+                    p.pictures?.length
+            );
+
+            if (match) return match.pictures[0];
+        }
+
+        // fallback (original behavior)
         const first = activeProducts.find((p) => p.prefix === code && p.pictures?.length);
         return first?.pictures?.[0] || "";
     };
@@ -506,14 +533,17 @@ function CatalogV2({
                 <div
                     className="modalOverlay"
                     onClick={() => {
+                        setSearch("");
                         setSelectedCategory(null);
                         setOpenSub([]);
                     }}
                 >
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <div className="modalHeader">
+                        <div className="modalHeader-catV2">
                             <div className="modalTitleWrapper">
                                 <h2>{selectedCategory.name}</h2>
+
+
                                 <p className="modalSubTitle">
                                     <span className="modalCatPill">Category</span>
                                     <span className="modalCatCode">{selectedCategory.code}</span>
@@ -525,11 +555,25 @@ function CatalogV2({
                                 style={{ cursor: "pointer" }}
                                 className="closeBtn"
                                 onClick={() => {
+                                    setSearch("");
                                     setSelectedCategory(null);
                                     setOpenSub([]);
                                 }}
                             />
                         </div>
+
+                        <div className="seeAllDiv">
+                            {search && (
+                                <button
+                                    className="seeAllBtn"
+                                    onClick={() => setSearch("")}
+                                >
+                                    <Eye size={16} style={{marginBottom:"-3px", marginRight:"10px"}}/>
+                                    See all products of this category
+                                </button>
+                            )}
+                        </div>
+
 
                         {productsInCategory.length === 0 && (
                             <div className="emptyCategoryBox">
@@ -604,8 +648,8 @@ function CatalogV2({
                                         </div>
 
                                         <div className="cardContent">
-                                            <h4 style={{marginBlock:"5px"}}>{item.productName || item.product}</h4>
-                                            <span className="code" style={{marginBottom:"15px"}}>{item.product}</span>
+                                            <h4 style={{ marginBlock: "5px" }}>{item.productName || item.product}</h4>
+                                            <span className="code" style={{ marginBottom: "15px" }}>{item.product}</span>
 
                                             {/* DESCRIPTION ABOVE COUNT */}
                                             {item.description && (
@@ -643,25 +687,25 @@ function CatalogV2({
 
                                             {/* MINI CAROUSEL */}
                                             {/* {item.pictures?.length > 1 && ( */}
-                                                <div className="miniCarousel">
-                                                    {item.pictures.map((pic, idx) => (
-                                                        <img
-                                                            key={idx}
-                                                            src={pic}
-                                                            alt=""
-                                                            className={`miniThumb ${(carouselIndex[item.product] || 0) === idx
-                                                                ? "active"
-                                                                : ""
-                                                                }`}
-                                                            onClick={() =>
-                                                                setCarouselIndex({
-                                                                    ...carouselIndex,
-                                                                    [item.product]: idx,
-                                                                })
-                                                            }
-                                                        />
-                                                    ))}
-                                                </div>
+                                            <div className="miniCarousel">
+                                                {item.pictures.map((pic, idx) => (
+                                                    <img
+                                                        key={idx}
+                                                        src={pic}
+                                                        alt=""
+                                                        className={`miniThumb ${(carouselIndex[item.product] || 0) === idx
+                                                            ? "active"
+                                                            : ""
+                                                            }`}
+                                                        onClick={() =>
+                                                            setCarouselIndex({
+                                                                ...carouselIndex,
+                                                                [item.product]: idx,
+                                                            })
+                                                        }
+                                                    />
+                                                ))}
+                                            </div>
                                             {/* )} */}
 
                                             {/* NOT CATEGORIZED DETAILS MODAL */}
@@ -803,7 +847,7 @@ function CatalogV2({
                                                                                 {s.picture ? <img src={s.picture} alt="" /> : <div className="subImgPh" />}
                                                                             </div>
                                                                             <div className="subInfo">
-                                                                                <div className="subName">{s.name || "—"} <h4 style={{color:"#c53b3b"}}>{s.productCode || ""}</h4></div>
+                                                                                <div className="subName">{s.name || "—"} <h4 style={{ color: "#c53b3b" }}>{s.productCode || ""}</h4></div>
                                                                                 <div className="subDesc">{s.description || ""}</div>
 
                                                                                 {/* {s.drive && s.drive !== "#N/A" && (
@@ -818,7 +862,7 @@ function CatalogV2({
                                                                                     </a>
                                                                                 )} */}
                                                                             </div>
-                                                                            
+
                                                                         </div>
                                                                     ))}
                                                                 </div>

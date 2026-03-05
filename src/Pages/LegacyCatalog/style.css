@@ -60,13 +60,23 @@ body {
 /* SEARCH TIPS */
 
 .tipsContainer {
-    margin-bottom: 40px;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0px auto 0px auto;
+    padding: 0 30px;
+    justify-items: center;
 }
 
 .tipsTitle {
     font-size: 14px;
     color: #888;
     margin-bottom: 4px;
+}
+
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .suggestions button {
@@ -79,6 +89,7 @@ body {
     color: #fff;
     cursor: pointer;
     transition: 0.2s;
+    margin-bottom: 20px;
 }
 
 .suggestions button:hover {
@@ -95,6 +106,7 @@ body {
     gap: 30px;
     max-width: 1200px;
     margin: auto;
+    margin-top: 20px;
 }
 
 .categoryCard-legacy {
