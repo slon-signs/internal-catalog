@@ -345,7 +345,7 @@ body {
 
 .machineryContainer.open {
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-    margin-bottom:-30px;
+    margin-bottom: -30px;
 }
 
 .machineryButton {
@@ -369,7 +369,7 @@ body {
     border-bottom-right-radius: 0;
     border-bottom: none;
     box-shadow: none;
-    margin-bottom:-30px;
+    margin-bottom: -30px;
 }
 
 .machineryArrow {
@@ -482,4 +482,26 @@ body {
         text-align: center;
     }
 
+}
+
+
+@media (max-width: 500px) {
+    .searchContainer {
+        max-width: 280px;
+    }
+
+    .searchContainer input {
+        width: 85%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 380px) {
+    .searchContainer {
+        max-width: 250px;
+    }
+
+    .searchContainer input {
+        width: 70%;
+    }
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Papa from "papaparse";
 import TopImage from "../../img/slon-large.png";
-import { Search, X, ChevronDown, Folder, Layers, ExternalLink, Eye } from "react-feather";
+import { Search, X, ChevronDown, Folder, Layers, ExternalLink, Eye, Table } from "react-feather";
 import "./style.css";
 
 // ✅ IMPORTANT: Put your published CSV links here (3 tabs)
@@ -117,6 +117,7 @@ function CatalogV2({
                     : [];
                 const active = clean(r["active"] || r["status"]);
                 const approved = clean(r["approved"]);
+                const spreadsheet = clean(r["spreadsheet"] || r["spreadsheets"]);
                 const description = clean(
                     r["description"] ||
                     r["desc"] ||
@@ -138,7 +139,7 @@ function CatalogV2({
 
                 const driveFolder = clean(r["drive folder"] || r["drive"] || r["folder"]);
 
-                return { product, productName, prefix, suffix, pictures, active, approved, description, driveFolder };
+                return { product, productName, prefix, suffix, pictures, active, approved, description, driveFolder, spreadsheet };
             })
             .filter((p) => p.product && p.prefix && p.suffix);
     }, [productsRows]);
@@ -367,10 +368,10 @@ function CatalogV2({
                         <div className="suggestions">
                             {[
                                 "FILL-FACE-STD",
-                                "CABI-PUSH-CST",
                                 "Letters",
                                 "Illuminated",
                                 "Service",
+                                "CABI-PUSH-CST",
                             ].map((tip) => (
                                 <button key={tip} onClick={() => setSearch(tip)}>
                                     {tip}
@@ -568,7 +569,7 @@ function CatalogV2({
                                     className="seeAllBtn"
                                     onClick={() => setSearch("")}
                                 >
-                                    <Eye size={16} style={{marginBottom:"-3px", marginRight:"10px"}}/>
+                                    <Eye size={16} style={{ marginBottom: "-3px", marginRight: "10px" }} />
                                     See all products of this category
                                 </button>
                             )}
@@ -661,11 +662,11 @@ function CatalogV2({
                                             <div className="v2ActionRow">
 
                                                 {/* NUMBER OF SIGNS */}
-                                                <div className="v2CountRow">
+                                                {/* <div className="v2CountRow">
                                                     <span className="v2CountBadge">
                                                         {sub.length} sign(s)
                                                     </span>
-                                                </div>
+                                                </div> */}
 
                                                 {/* DRIVE FOLDER */}
                                                 <button
@@ -679,9 +680,26 @@ function CatalogV2({
                                                         }
                                                     }}
                                                 >
-                                                    <Folder size={17} style={{ marginBottom: "-1px" }} />
+                                                    <Folder size={17} style={{ marginBottom: "0px" }} />
                                                     Product Folder
-                                                    <ExternalLink size={13} style={{ marginBottom: "1px" }} />
+                                                    {/* <ExternalLink size={13} style={{ marginBottom: "1px" }} /> */}
+                                                </button>
+
+                                                {/* SPREADSHEET ABOVE COUNT */}
+                                                <button
+                                                    type="button"
+                                                    className="catSpreadsheetBtn"
+                                                    onClick={() => {
+                                                        if (item.spreadsheet) {
+                                                            window.open(item.spreadsheet, "_blank", "noreferrer");
+                                                        } else {
+                                                            setDriveModal({ open: true, message: "Spreadsheet not available" });
+                                                        }
+                                                    }}
+                                                >
+                                                    <Table size={17} style={{ marginBottom: "0px" }} />
+                                                    <span >Spreadsheet</span>
+                                                    <ExternalLink size={13} style={{ marginBottom: "1px", marginLeft:"1px" }} />
                                                 </button>
                                             </div>
 
