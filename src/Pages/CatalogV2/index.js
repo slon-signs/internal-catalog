@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Papa from "papaparse";
 import TopImage from "../../img/slon-large.png";
-import { Search, X, ChevronDown, Folder, Layers, ExternalLink, Eye, Table } from "react-feather";
+import { Search, X, ChevronDown, Folder, Layers, ExternalLink, Eye, Table, CheckSquare, Cpu, Terminal, Tool, Book } from "react-feather";
 import "./style.css";
 
 // ✅ IMPORTANT: Put your published CSV links here (3 tabs)
@@ -16,6 +16,12 @@ const CSV_NEW_PRODUCTS =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRi6d5P12AvwsVh5EjWHZbX5Hyu5tXco2aECP8SXoCEiTMHaV3Lc_gb9XtXYFwJekd3nGdbKUrFVbNg/pub?gid=743236726&single=true&output=csv";
 const normalizeKey = (k) => String(k || "").trim().toLowerCase();
 const clean = (v) => String(v || "").trim();
+
+const formatText = (text) =>
+    String(text || "")
+        .split(";")
+        .map((t) => t.trim())
+        .filter(Boolean);
 
 const parseCsv = async (url) => {
     const res = await axios.get(url);
@@ -62,6 +68,8 @@ function CatalogV2({
 
     const [selectedNotCat, setSelectedNotCat] = useState(null);
     const [driveModal, setDriveModal] = useState({ open: false, message: "" });
+
+    const [selectedSubProduct, setSelectedSubProduct] = useState(null);
 
     // ✅ Fetch 3 CSVs
     useEffect(() => {
@@ -169,6 +177,8 @@ function CatalogV2({
             machines: clean(r["machines"]),
             finishing: clean(r["finishing"]),
             quoteSpecs: clean(r["quotespecs"] || r["quote specs"] || r["sfq"]),
+            installationDetails: clean(r["installation"] || r["installation details"]),
+            type: clean(r["type"]),
         }));
     }, [mainRows]);
 
@@ -367,7 +377,7 @@ function CatalogV2({
 
                         <div className="suggestions">
                             {[
-                                "FILL-FACE-STD",
+                                "FILL-HALO-STD",
                                 "Letters",
                                 "Illuminated",
                                 "Service",
@@ -699,7 +709,7 @@ function CatalogV2({
                                                 >
                                                     <Table size={17} style={{ marginBottom: "0px" }} />
                                                     <span >Spreadsheet</span>
-                                                    <ExternalLink size={13} style={{ marginBottom: "1px", marginLeft:"1px" }} />
+                                                    <ExternalLink size={13} style={{ marginBottom: "1px", marginLeft: "1px" }} />
                                                 </button>
                                             </div>
 
@@ -860,7 +870,12 @@ function CatalogV2({
                                                             ) : (
                                                                 <div className="subGrid">
                                                                     {sub.map((s, i) => (
-                                                                        <div key={`${key}-sub-${i}`} className="subCard">
+                                                                        <div
+                                                                            key={`${key}-sub-${i}`}
+                                                                            className="subCard"
+                                                                            onClick={() => setSelectedSubProduct(s)}
+                                                                            style={{ cursor: "pointer" }}
+                                                                        >
                                                                             <div className="subImg">
                                                                                 {s.picture ? <img src={s.picture} alt="" /> : <div className="subImgPh" />}
                                                                             </div>
@@ -897,6 +912,163 @@ function CatalogV2({
                     </div>
                 </div>
             )}
+
+            {selectedSubProduct && (
+                <div
+                    className="modalOverlay"
+                    onClick={() => setSelectedSubProduct(null)}
+                >
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+
+                        <div className="modalHeader">
+                            <div className="modalTitleWrapper">
+                                <h2>{selectedSubProduct.name || selectedSubProduct.productCode}</h2>
+
+                                <p className="modalSubTitle">
+                                    <span className="modalCatPill">Legacy Code</span>
+                                    <span className="modalCatCode">{selectedSubProduct.productCode}</span>
+                                </p>
+                            </div>
+
+                            <X
+                                size={28}
+                                style={{ cursor: "pointer" }}
+                                className="closeBtn"
+                                onClick={() => setSelectedSubProduct(null)}
+                            />
+                        </div>
+
+                        <div className="notCatDetailBody">
+
+                            <div className="notCatDetailTop">
+
+                                <div className="notCatDetailImg">
+                                    {selectedSubProduct.picture ? (
+                                        <img src={selectedSubProduct.picture} alt="" />
+                                    ) : (
+                                        <div className="notCatDetailPh" />
+                                    )}
+                                </div>
+
+                                <div className="notCatDetailInfo">
+
+                                    {selectedSubProduct.description && (
+                                        <p className="notCatDetailDesc">
+                                            {/* {selectedSubProduct.description} */}
+                                            {formatText(selectedSubProduct.description).map((line, i) => (
+                                                <p key={i}>{line}.</p>
+                                            ))}
+                                        </p>
+                                    )}
+
+                                    {selectedSubProduct.drive && selectedSubProduct.drive !== "#N/A" && (
+                                        <button
+                                            className="v2DriveBtn"
+                                            onClick={() =>
+                                                window.open(selectedSubProduct.drive, "_blank", "noreferrer")
+                                            }
+                                        >
+                                            <Folder size={16} style={{ marginBottom: "-2px" }} />
+                                            Drive Folder
+                                        </button>
+                                    )}
+                                </div>
+
+                            </div>
+
+                            <div className="notCatDetailGrid">
+
+                                {selectedSubProduct.materials && (
+                                    <div className="notCatDetailBox">
+                                        <div className="notCatDetailLabel"><Book size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }} /> Typical Materials</div>
+                                        <div className="notCatDetailText">
+                                            {formatText(selectedSubProduct.materials).map((line, i) => (
+                                                <p key={i}>{line}.</p>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {selectedSubProduct.machines && (
+                                    <div className="notCatDetailBox">
+                                        <div className="notCatDetailLabel"><Cpu size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }} /> Machines</div>
+                                        <div className="notCatDetailText">
+                                            {/* {selectedSubProduct.machines} */}
+                                            {formatText(selectedSubProduct.machines).map((line, i) => (
+                                                <p key={i}>{line}.</p>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {selectedSubProduct.installationDetails && (
+                                    <div className="notCatDetailBox">
+                                        <div className="notCatDetailLabel"><Tool size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }} /> Installation details</div>
+                                        <div className="notCatDetailText">
+                                            {formatText(selectedSubProduct.installationDetails).map((line, i) => (
+                                                <p key={i}>{line}.</p>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {selectedSubProduct.finishing && (
+                                    <div className="notCatDetailBox">
+                                        <div className="notCatDetailLabel"><CheckSquare size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }} /> Finishing</div>
+                                        <div className="notCatDetailText">
+                                            {/* {selectedSubProduct.finishing} */}
+                                            {formatText(selectedSubProduct.finishing).map((line, i) => (
+                                                <p key={i}>{line}.</p>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {selectedSubProduct.quoteSpecs && (
+                                    <div className="notCatDetailBox">
+                                        <div className="notCatDetailLabel"><CheckSquare size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }} /> SFQ</div>
+                                        <div className="notCatDetailText">
+                                            {/* {selectedSubProduct.quoteSpecs} */}
+                                            {formatText(selectedSubProduct.quoteSpecs).map((line, i) => (
+                                                <p key={i}>{line}.</p>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {selectedSubProduct.notes && (
+                                    <div className="notCatDetailBox">
+                                        <div className="notCatDetailLabel"><Terminal size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }}  /> Notes</div>
+                                        <div className="notCatDetailText">
+                                            {/* {selectedSubProduct.notes} */}
+                                            {formatText(selectedSubProduct.notes).map((line, i) => (
+                                                <p key={i}>{line}.</p>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {selectedSubProduct.type && (
+                                    <div className="notCatDetailBox">
+                                        <div className="notCatDetailLabel">TYPE</div>
+
+                                        <div
+                                            className={`typeBadge ${selectedSubProduct.type.toLowerCase() === "standard"
+                                                    ? "typeStandard"
+                                                    : "typeCustom"
+                                                }`}
+                                        >
+                                            {selectedSubProduct.type}
+                                        </div>
+                                    </div>
+                                )}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* GLOBAL DRIVE MODAL */}
             {driveModal.open && (
                 <div
