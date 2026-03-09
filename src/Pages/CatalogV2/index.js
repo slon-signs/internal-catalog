@@ -881,7 +881,9 @@ function CatalogV2({
                                                                             </div>
                                                                             <div className="subInfo">
                                                                                 <div className="subName">{s.name || "—"} <h4 style={{ color: "#c53b3b" }}>{s.productCode || ""}</h4></div>
-                                                                                <div className="subDesc">{s.description || ""}</div>
+                                                                                <div className="subDesc">
+                                                                                    {(s.description || "").split("➤")[1]?.trim() || ""}
+                                                                                </div>
 
                                                                                 {/* {s.drive && s.drive !== "#N/A" && (
                                                                                     <a
@@ -980,7 +982,7 @@ function CatalogV2({
 
                                 {selectedSubProduct.materials && (
                                     <div className="notCatDetailBox">
-                                        <div className="notCatDetailLabel"><Book size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }} /> Typical Materials</div>
+                                        <div className="notCatDetailLabel"><Book size={17} style={{ marginBottom: "-3px", marginRight: "10PX" }} /> Typical Materials</div>
                                         <div className="notCatDetailText">
                                             {formatText(selectedSubProduct.materials).map((line, i) => (
                                                 <p key={i}>{line}.</p>
@@ -991,7 +993,7 @@ function CatalogV2({
 
                                 {selectedSubProduct.machines && (
                                     <div className="notCatDetailBox">
-                                        <div className="notCatDetailLabel"><Cpu size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }} /> Machines</div>
+                                        <div className="notCatDetailLabel"><Cpu size={17} style={{ marginBottom: "-3px", marginRight: "10PX" }} /> Machines</div>
                                         <div className="notCatDetailText">
                                             {/* {selectedSubProduct.machines} */}
                                             {formatText(selectedSubProduct.machines).map((line, i) => (
@@ -1003,7 +1005,7 @@ function CatalogV2({
 
                                 {selectedSubProduct.installationDetails && (
                                     <div className="notCatDetailBox">
-                                        <div className="notCatDetailLabel"><Tool size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }} /> Installation details</div>
+                                        <div className="notCatDetailLabel"><Tool size={17} style={{ marginBottom: "-3px", marginRight: "10PX" }} /> Installation details</div>
                                         <div className="notCatDetailText">
                                             {formatText(selectedSubProduct.installationDetails).map((line, i) => (
                                                 <p key={i}>{line}.</p>
@@ -1014,7 +1016,7 @@ function CatalogV2({
 
                                 {selectedSubProduct.finishing && (
                                     <div className="notCatDetailBox">
-                                        <div className="notCatDetailLabel"><CheckSquare size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }} /> Finishing</div>
+                                        <div className="notCatDetailLabel"><CheckSquare size={17} style={{ marginBottom: "-3px", marginRight: "10PX" }} /> Finishing</div>
                                         <div className="notCatDetailText">
                                             {/* {selectedSubProduct.finishing} */}
                                             {formatText(selectedSubProduct.finishing).map((line, i) => (
@@ -1026,7 +1028,7 @@ function CatalogV2({
 
                                 {selectedSubProduct.quoteSpecs && (
                                     <div className="notCatDetailBox">
-                                        <div className="notCatDetailLabel"><CheckSquare size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }} /> SFQ</div>
+                                        <div className="notCatDetailLabel"><CheckSquare size={17} style={{ marginBottom: "-3px", marginRight: "10PX" }} /> SFQ</div>
                                         <div className="notCatDetailText">
                                             {/* {selectedSubProduct.quoteSpecs} */}
                                             {formatText(selectedSubProduct.quoteSpecs).map((line, i) => (
@@ -1038,7 +1040,7 @@ function CatalogV2({
 
                                 {selectedSubProduct.notes && (
                                     <div className="notCatDetailBox">
-                                        <div className="notCatDetailLabel"><Terminal size={17} style={{ marginBottom: "-3px", marginRight:"10PX" }}  /> Notes</div>
+                                        <div className="notCatDetailLabel"><Terminal size={17} style={{ marginBottom: "-3px", marginRight: "10PX" }} /> Notes</div>
                                         <div className="notCatDetailText">
                                             {/* {selectedSubProduct.notes} */}
                                             {formatText(selectedSubProduct.notes).map((line, i) => (
@@ -1054,8 +1056,8 @@ function CatalogV2({
 
                                         <div
                                             className={`typeBadge ${selectedSubProduct.type.toLowerCase() === "standard"
-                                                    ? "typeStandard"
-                                                    : "typeCustom"
+                                                ? "typeStandard"
+                                                : "typeCustom"
                                                 }`}
                                         >
                                             {selectedSubProduct.type}

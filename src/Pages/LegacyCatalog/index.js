@@ -307,7 +307,7 @@ function LegacyCatalog() {
                         {item["Product Code"]}
                       </span>
 
-                      <p>{item.Description}</p>
+                      <p>{(item.Description|| "").split("➤")[1]?.trim() || ""}</p>
 
                       <button
                         className="specToggle"
