@@ -381,7 +381,7 @@ function CatalogV2({
                                 "Letters",
                                 "Illuminated",
                                 "Service",
-                                "CABI-PUSH-CST",
+                                "Push-Through",
                             ].map((tip) => (
                                 <button key={tip} onClick={() => setSearch(tip)}>
                                     {tip}
@@ -924,11 +924,17 @@ function CatalogV2({
 
                         <div className="modalHeader">
                             <div className="modalTitleWrapper">
-                                <h2>{selectedSubProduct.name || selectedSubProduct.productCode}</h2>
+                                <h3 style={{marginBottom:"10px"}}>{selectedSubProduct.name || selectedSubProduct.productCode}</h3>
 
                                 <p className="modalSubTitle">
                                     <span className="modalCatPill">Legacy Code</span>
                                     <span className="modalCatCode">{selectedSubProduct.productCode}</span>
+                                </p>
+                                <p className="modalSubTitle">
+                                    <span className="modalCatPill">New Code</span>
+                                    <span className="modalCatCode">
+                                        {selectedSubProduct.newCategory}-{selectedSubProduct.newCode}
+                                    </span>
                                 </p>
                             </div>
 
