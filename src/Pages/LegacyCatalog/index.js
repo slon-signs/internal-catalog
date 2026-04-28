@@ -36,6 +36,15 @@ function LegacyCatalog() {
   const [highlightedProduct, setHighlightedProduct] = useState(null);
   const [openSpecs, setOpenSpecs] = useState([]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const searchParam = params.get("search");
+
+    if (searchParam) {
+      setSearch(searchParam);
+    }
+  }, []);
+
   const [showMachinery, setShowMachinery] = useState(false);
   const [showCategorySpecs, setShowCategorySpecs] = useState(false);
   const [showTimeline, setShowTimeline] = useState(false);
@@ -125,7 +134,13 @@ function LegacyCatalog() {
     return <Layers size={38} />;
   };
 
-  const clearSearch = () => setSearch("");
+  const clearSearch = () => {
+    setSearch("");
+
+    const url = new URL(window.location);
+    url.searchParams.delete("search");
+    window.history.replaceState({}, "", url);
+  };
 
   return (
     <div className="container">
@@ -138,7 +153,21 @@ function LegacyCatalog() {
           type="text"
           placeholder="Search sign, category or code..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          // onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            setSearch(value);
+
+            const url = new URL(window.location);
+
+            if (value.trim()) {
+              url.searchParams.set("search", value);
+            } else {
+              url.searchParams.delete("search");
+            }
+
+            window.history.replaceState({}, "", url);
+          }}
         />
         {search && (
           <button className="clearBtn" onClick={clearSearch}>
@@ -163,7 +192,14 @@ function LegacyCatalog() {
             {["CLCS1001", "LBPS1201", "Letters", "Illuminated", "Service"].map((tip) => (
               <button
                 key={tip}
-                onClick={() => setSearch(tip)}
+                // onClick={() => setSearch(tip)}
+                onClick={() => {
+                  setSearch(tip);
+
+                  const url = new URL(window.location);
+                  url.searchParams.set("search", tip);
+                  window.history.replaceState({}, "", url);
+                }}
               >
                 {tip}
               </button>
@@ -307,7 +343,7 @@ function LegacyCatalog() {
                         {item["Product Code"]}
                       </span>
 
-                      <p>{(item.Description|| "").split("➤")[1]?.trim() || ""}</p>
+                      <p>{(item.Description || "").split("➤")[1]?.trim() || ""}</p>
 
                       <button
                         className="specToggle"
